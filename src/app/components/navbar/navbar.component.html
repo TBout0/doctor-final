@@ -1,0 +1,10 @@
+<div>
+  <h1>Doctor Website</h1>
+  <div class="buttons">
+    <button routerLink="/home">Home</button>
+    <button routerLink="/register" *ngIf="this.uds.getCurrentUser() === null">Register</button>
+    <button routerLink="/log-in" *ngIf="this.uds.getCurrentUser() === null">Login</button>
+    <button routerLink="/appointment" *ngIf="this.uds.getCurrentUser() !== null">Appointments</button>
+    <button (click)="this.uds.logOut()" *ngIf="this.uds.getCurrentUser() !== null">LogOut</button>
+  </div>
+</div>

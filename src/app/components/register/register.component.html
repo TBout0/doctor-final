@@ -1,0 +1,34 @@
+{{regData.firstname}} {{regData.lastname}}
+
+<div class="form">
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="regData.firstname">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="regData.lastname">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="regData.email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>UserType</mat-label>
+    <mat-select [(ngModel)]="regData.userType">
+      <mat-option value="doctor">Doctor</mat-option>
+      <mat-option value="patient">Patient</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="regData.password" type="password">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Confirm Password</mat-label>
+    <input matInput [(ngModel)]="regData.confirmPassword" type="password">
+  </mat-form-field>
+  <button mat-flat-button (click)="onSubmit()">Submit</button>
+
+
+</div>

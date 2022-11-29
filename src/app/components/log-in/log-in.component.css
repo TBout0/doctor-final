@@ -1,0 +1,13 @@
+.form {
+  align-items:center;;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 20px;
+  border:none;
+  background-color: #3A3B3C;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  padding:20px 60px;
+  }

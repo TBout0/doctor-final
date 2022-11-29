@@ -1,0 +1,11 @@
+<div class="form">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="loginData.email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="loginData.password" type="password">
+  </mat-form-field>
+  <button mat-raised-button (click)="onSubmit()">Log In</button>
+</div>
