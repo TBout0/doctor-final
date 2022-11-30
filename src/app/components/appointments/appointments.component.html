@@ -1,21 +1,48 @@
-<div *ngIf="this.uds.getCurrentUser()?.userType ==='doctor'">
+<div *ngIf="this.uds.currentUser?.userType ==='doctor'">
   <mat-tab-group>
     <mat-tab label="Appointments">
-
+      <div class="flex">
+        <mat-card *ngFor="let item of apptData">
+          {{'Date: ' + toDate(item.date).toLocaleDateString()}}
+          <br>
+          {{'Time: ' + formatTimeSlot(item.timeSlot) +'--- At Time Slot (' + item.timeSlot +')' }}
+          <br>
+          {{'Doctor: ' + item.doctorId}}
+          <br>
+          {{'Patient: ' + item.patientId}}
+          <div class="buttons">
+            <button mat-mini-fab color="primary" (click)="onDelete(item)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </mat-card>
+      </div>
     </mat-tab>
     <mat-tab label="Set Availability">
-      <mat-form-field appearance="fill">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="availabilityData.date">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <button (click)="onSubmit()">submit</button>
+      <div class="form">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="availabilityData.date">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-select multiple [(ngModel)]="availabilityData.slotIds">
+            <mat-option value=1>1</mat-option>
+            <mat-option value=2>2</mat-option>
+            <mat-option value=3>3</mat-option>
+            <mat-option value=4>4</mat-option>
+            <mat-option value=5>5</mat-option>
+            <mat-option value=6>6</mat-option>
+            <mat-option value=7>7</mat-option>
+            <mat-option value=8>8</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="onDoctorSubmit()">submit</button>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>
-<div *ngIf="this.uds.getCurrentUser()?.userType ==='patient'">
+<div *ngIf="this.uds.currentUser?.userType ==='patient'">
 
 </div>
-<h1 *ngIf="this.uds.getCurrentUser()?.userType === null"> LogIn to view Appointments</h1>
+<h1 *ngIf="this.uds.currentUser?.userType === null"> LogIn to view Appointments</h1>

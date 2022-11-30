@@ -8,24 +8,25 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserDataService {
-  private currentUser: userData|null = null;
+  public currentUser: userData|null = null;
 
   constructor(private http: HttpClient, private router: Router) { }
-
-  getCurrentUser = () => this.currentUser
 
   logOut = () => this.currentUser = null
 
   checkUserDataExists(email:string): Observable<userData[]>{
     return this.http.get<userData[]>(`http://localhost:3000/userData?email=${email}`)
+    .pipe(take(1),catchError(this.handleError<any>('CheckUserExists')))
   }
 
   makeUserData(firstname:string, lastname:string, email:string,userType:string,password:string): Observable<userData>{
     return this.http.post<userData>(`http://localhost:3000/userData`, new userData(firstname,lastname,email,password,userType))
+    .pipe(take(1),catchError(this.handleError<any>('MakeUserData')))
   }
 
   logIn(email:string,password:String):void{
     this.http.get<userData[]>(`http://localhost:3000/userData?email=${email}&password=${password}`)
+    .pipe(take(1),catchError(this.handleError<any>('LogIn')))
     .subscribe(data => {
       if(data.length == 1){
         this.currentUser = data[0];
@@ -36,4 +37,12 @@ export class UserDataService {
       }
     })
   }
+
+  private handleError<T>(operation = 'operation', result ?:T) {
+    return (error: any): Observable<T> => {
+      console.log(`Error in executing execute ${operation} failed: ${error.message}`);
+    return of(result as T);
+  }
+}
+
 }

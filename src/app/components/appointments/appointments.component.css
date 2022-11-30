@@ -1,0 +1,32 @@
+.form {
+  align-items:center;;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 20px;
+  border:none;
+  background-color: #3A3B3C;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  padding:20px 60px;
+  margin: auto;
+  margin-top:100px;
+  }
+mat-card {
+  margin: 20px;
+  width: fit-content;
+  height: fit-content;
+}
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.buttons{
+  display: flex;
+  flex-direction: row;
+  align-self:flex-end;
+  justify-content: flex-end;
+}
